@@ -444,7 +444,7 @@
 							>{group.kind}:{group.name}{group.count > 1 ? ` ×${group.count}` : ''}</span
 						>
 					{/each}
-					{#each row.flags as flag (`${row.id}-${flag.kind}-${flag.kind === 'repeat' ? flag.name : 'cue'}`)}
+					{#each row.flags as flag (`${row.id}-${flag.kind}-${flag.kind === 'repeat' ? `${flag.cueKind}:${flag.name}` : 'cue'}`)}
 						<span class={flagClass(flag)}>{flagLabel(flag, NUM_REELS)}</span>
 					{/each}
 				</li>

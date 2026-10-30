@@ -26,7 +26,7 @@ export type CueHit = {
 
 export type CueFlag =
 	| { kind: 'no-cue'; silent: boolean }
-	| { kind: 'repeat'; name: string; count: number; expected: boolean };
+	| { kind: 'repeat'; cueKind: CueKind; name: string; count: number; expected: boolean };
 
 export type LogRow = {
 	id: number;
@@ -52,19 +52,30 @@ export const REEL_STOP_CUE = 'sfx_reel_stop_1';
 
 const REEL_STOP_EVENTS = new Set(['reveal', 'tumbleBoard']);
 
-export function flagsFor(type: string, cues: { name: string }[]): CueFlag[] {
+export function flagsFor(type: string, cues: { kind: CueKind; name: string }[]): CueFlag[] {
 	if (!cues.length) {
 		return [{ kind: 'no-cue', silent: KNOWN_SILENT_EVENTS.has(type) }];
 	}
 
-	const counts = new Map<string, number>();
-	for (const cue of cues) counts.set(cue.name, (counts.get(cue.name) ?? 0) + 1);
+	const counts = new Map<string, { cueKind: CueKind; name: string; count: number }>();
+	for (const cue of cues) {
+		const key = `${cue.kind}\0${cue.name}`;
+		const hit = counts.get(key);
+		if (hit) hit.count += 1;
+		else counts.set(key, { cueKind: cue.kind, name: cue.name, count: 1 });
+	}
 
 	const flags: CueFlag[] = [];
-	for (const [name, count] of counts) {
-		if (count < 2) continue;
-		const expected = name === REEL_STOP_CUE && REEL_STOP_EVENTS.has(type);
-		flags.push({ kind: 'repeat', name, count, expected });
+	for (const hit of counts.values()) {
+		if (hit.count < 2) continue;
+		const expected = hit.name === REEL_STOP_CUE && REEL_STOP_EVENTS.has(type);
+		flags.push({
+			kind: 'repeat',
+			cueKind: hit.cueKind,
+			name: hit.name,
+			count: hit.count,
+			expected,
+		});
 	}
 	return flags;
 }
@@ -81,11 +92,12 @@ export function groupCues(cues: CueHit[]): { kind: CueKind; name: string; count:
 
 export function flagLabel(flag: CueFlag, reelCount = 0): string {
 	if (flag.kind === 'no-cue') return flag.silent ? 'no cue (silent)' : 'no cue';
+	const cue = `${flag.cueKind}:${flag.name}`;
 	if (flag.expected) {
 		const reels = reelCount > 0 && flag.count === reelCount ? ' (one per reel)' : '';
-		return `${flag.name} ×${flag.count} expected${reels}`;
+		return `${cue} ×${flag.count} expected${reels}`;
 	}
-	return `repeat ${flag.name} ×${flag.count}`;
+	return `repeat ${cue} ×${flag.count}`;
 }
 
 export function flagClass(flag: CueFlag): string {

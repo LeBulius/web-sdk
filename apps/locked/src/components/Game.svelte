@@ -44,6 +44,7 @@
 		useUiItem,
 	} from 'layout-editor';
 	import { setContext } from 'svelte';
+	import { dev } from '$app/environment';
 	import { REEL_ROWS, SYMBOL_SIZE } from '../game/constants';
 	import { GRID_GEOMETRY, activeGrid } from '../game/grid';
 
@@ -297,6 +298,12 @@
 
 <!-- layout-editor: dev-only builder shell, outside the PIXI tree -->
 <BuilderShellMount />
+
+{#if dev}
+	{#await import('../dev/DevPanel.svelte') then { default: DevPanel }}
+		<DevPanel />
+	{/await}
+{/if}
 
 <Modals>
 	{#snippet version()}

@@ -1,0 +1,289 @@
+{
+	"kind": "shared-ui",
+	"version": "1.0.0",
+	"owner": "Locked In UI",
+	"description": "Shared UI layer for every web-sdk game. Changes here affect every game once released and pinned.",
+	"guardRails": {
+		"controlBar": {
+			"desktop": 110,
+			"mobileL": 180,
+			"mobileL_land": 110
+		},
+		"previewInsets": {
+			"desktop": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"laptop": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"popoutL": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"popoutS": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"mobileL": {
+				"top": 47,
+				"right": 0,
+				"bottom": 34,
+				"left": 0
+			},
+			"mobileM": {
+				"top": 20,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"mobileS": {
+				"top": 20,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"mobileL_land": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"mobileM_land": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			},
+			"mobileS_land": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			}
+		},
+		"minTextPx": {
+			"desktop": 12,
+			"mobileL": 12
+		},
+		"minTapPx": 44,
+		"runtimeSafeArea": "env"
+	},
+	"items": {
+		"controlBar.band": {
+			"group": "controlBar",
+			"kind": "band",
+			"description": "Control-bar band height (guardRails.controlBar). Games may only grow it via uiOverrides.",
+			"viewports": {}
+		},
+		"controlBar.spin": {
+			"group": "controlBar",
+			"kind": "button",
+			"description": "Spin / stop button (new-ui-pixi)",
+			"viewports": {}
+		},
+		"controlBar.betMinus": {
+			"group": "controlBar",
+			"kind": "button",
+			"description": "Bet − (new-ui-pixi)",
+			"viewports": {}
+		},
+		"controlBar.betPlus": {
+			"group": "controlBar",
+			"kind": "button",
+			"description": "Bet + (new-ui-pixi)",
+			"viewports": {}
+		},
+		"controlBar.autospin": {
+			"group": "controlBar",
+			"kind": "button",
+			"description": "Autospin button",
+			"viewports": {}
+		},
+		"controlBar.turbo": {
+			"group": "controlBar",
+			"kind": "button",
+			"description": "Turbo button",
+			"viewports": {}
+		},
+		"controlBar.menu": {
+			"group": "controlBar",
+			"kind": "button",
+			"description": "Menu button",
+			"viewports": {}
+		},
+		"controlBar.balance": {
+			"group": "controlBar",
+			"kind": "text",
+			"description": "Balance readout (key BALANCE)",
+			"viewports": {}
+		},
+		"controlBar.bet": {
+			"group": "controlBar",
+			"kind": "text",
+			"description": "Bet readout (key BET)",
+			"viewports": {}
+		},
+		"controlBar.win": {
+			"group": "controlBar",
+			"kind": "text",
+			"description": "Win readout (key WIN)",
+			"viewports": {}
+		},
+		"audio.mute": {
+			"group": "audio",
+			"kind": "button",
+			"description": "Mute chrome",
+			"viewports": {}
+		},
+		"audio.volume": {
+			"group": "audio",
+			"kind": "node",
+			"description": "Volume chrome",
+			"viewports": {}
+		},
+		"miniPlayer.label": {
+			"group": "miniPlayer",
+			"kind": "text",
+			"description": "Mini-player label scale",
+			"viewports": {}
+		},
+		"i18n.languageSwitch": {
+			"group": "i18n",
+			"kind": "node",
+			"description": "Social-casino language switch",
+			"viewports": {}
+		}
+	},
+	"popups": {
+		"betMenu": {
+			"contentHeight": 560,
+			"viewports": {
+				"desktop": {
+					"maxHeight": 520,
+					"padding": 16,
+					"scrollbar": true
+				},
+				"mobileL": {
+					"maxHeight": 480,
+					"padding": 12,
+					"scrollbar": false
+				}
+			},
+			"description": "Bet menu"
+		},
+		"menu": {
+			"contentHeight": 400,
+			"viewports": {
+				"desktop": {
+					"maxHeight": 520,
+					"padding": 16,
+					"scrollbar": true
+				},
+				"mobileL": {
+					"maxHeight": 480,
+					"padding": 12,
+					"scrollbar": true
+				}
+			},
+			"description": "Menu popup"
+		},
+		"autospin": {
+			"contentHeight": 360,
+			"viewports": {
+				"desktop": {
+					"maxHeight": 520,
+					"padding": 16,
+					"scrollbar": true
+				},
+				"mobileL": {
+					"maxHeight": 480,
+					"padding": 12,
+					"scrollbar": true
+				}
+			},
+			"description": "Autospin popup"
+		},
+		"settings": {
+			"description": "Settings popup"
+		},
+		"paytable": {
+			"shell": true,
+			"description": "Paytable popup shell + scrollbar (content per game)"
+		},
+		"rules": {
+			"shell": true,
+			"description": "Rules popup shell + scrollbar (content per game)"
+		},
+		"info": {
+			"shell": true,
+			"description": "Info popup shell + scrollbar (content per game)"
+		},
+		"bonusPage": {
+			"contentHeight": 640,
+			"viewports": {
+				"desktop": {
+					"maxHeight": 520,
+					"padding": 16,
+					"scrollbar": true
+				},
+				"mobileL": {
+					"maxHeight": 480,
+					"padding": 12,
+					"scrollbar": false
+				}
+			},
+			"shell": true,
+			"grid": {},
+			"description": "Buy-feature panel shell + card grid (cards: art/names/prices per game)"
+		}
+	},
+	"modals": {
+		"error": {
+			"description": "Error modal"
+		},
+		"replay": {
+			"description": "Replay modal"
+		},
+		"reconnect": {
+			"description": "Reconnect modal"
+		}
+	},
+	"loading": {
+		"shell": {
+			"description": "Loading screen shell"
+		}
+	},
+	"i18n": {
+		"source": "packages/new-ui-pixi/src/i18n/messagesMap/*.ts via stateI18nDerived.translate",
+		"commonKeys": {
+			"balance": "BALANCE",
+			"bet": "BET",
+			"win": "WIN",
+			"spin": null
+		},
+		"languageSwitch": {
+			"source": "state-shared stateUrl ?lang=",
+			"description": "No language-switch component found in new-ui-html / new-ui-pixi; lang comes from the URL."
+		}
+	},
+	"audio": {
+		"interactions": {}
+	},
+	"bindings": [],
+	"changelog": [
+		{
+			"version": "1.0.0",
+			"note": "Step C: control-bar band and popups migrated from apps/locked builder.json; mobileL_land band 110 added."
+		}
+	]
+}

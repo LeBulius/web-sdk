@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "BAKİYE",
+	"WIN": "KAZANÇ",
+	"BET": "BAHİS",
+	"BET MENU": "BAHİS MENÜSÜ",
+	"BONUS": "BONUS",
+	"DISABLE": "DEVRE DIŞI",
+	"AUTOPLAY": "OTO OYUN",
+	"NUMBER OF ROUNDS": "TUR SAYISI",
+	"TURBO": "TURBO",
+	"SETTINGS": "AYARLAR",
+	"MENU": "MENÜ",
+	"FREE SPINS": "BEDAVA DÖNÜŞ",
+	"TOTAL WIN": "TOPLAM KAZANÇ",
+	"EXTRA CHANCE": "EKSTRA ŞANS",
+};

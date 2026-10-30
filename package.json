@@ -2,7 +2,7 @@
   "name": "twist-turbo",
   "version": "0.0.0",
   "private": true,
-	"license": "MIT",
+  "license": "MIT",
   "scripts": {
     "lint": "turbo run lint",
     "format": "turbo run format",
@@ -14,7 +14,10 @@
     "publish-packages": "turbo run build lint test && changeset version && changeset publish",
     "e2e": "turbo run e2e",
     "e2e-smoke": "turbo run e2e-smoke",
-    "e2e-mobile": "turbo run e2e-mobile"
+    "e2e-mobile": "turbo run e2e-mobile",
+    "builder:prune": "pnpm --filter locked builder:prune",
+    "builder:rounds": "node packages/layout-editor/scripts/builder-rounds.mjs",
+    "builder:check": "node packages/layout-editor/scripts/builder-check.mjs apps/locked"
   },
   "dependencies": {
     "eslint": "9.21.0",
@@ -30,7 +33,11 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
+      "sharp",
       "svelte-preprocess"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }

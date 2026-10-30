@@ -10,6 +10,12 @@
 		children: Snippet;
 		zIndex: number;
 		persistent?: boolean;
+		/** When false, only the X (and Escape, if enabled) close — backdrop clicks do nothing. Default true. */
+		closeOnBackdrop?: boolean;
+		/** When false, Escape does not close. Default true. */
+		closeOnEscape?: boolean;
+		/** Optional image URL for the close control (e.g. new-ui-html close.webp). */
+		closeIconSrc?: string;
 		onclose: () => void;
 	};
 
@@ -22,7 +28,14 @@
 		contentLayer: 100,
 	};
 
+	const closeOnBackdrop = $derived(props.closeOnBackdrop ?? true);
+	const closeOnEscape = $derived(props.closeOnEscape ?? true);
+
 	const closeModal = () => (props.persistent ? undefined : props.onclose());
+	const onBackdropClick = () => {
+		if (props.persistent || !closeOnBackdrop) return;
+		props.onclose();
+	};
 
 	let disabled = $state(true);
 
@@ -33,11 +46,9 @@
 	});
 </script>
 
-<div>
-	{@render props.children()}
-</div>
-
-<OnHotkey hotkey="Escape" onpress={closeModal} />
+{#if closeOnEscape && !props.persistent}
+	<OnHotkey hotkey="Escape" onpress={closeModal} />
+{/if}
 
 <div class="pop-up-wrap" class:disabled style={`z-index: ${props.zIndex};`}>
 	<div class="blur-layer"></div>
@@ -47,20 +58,35 @@
 		in:blur={{ duration: 300, opacity: 0 }}
 	>
 		<div
-			tabindex={0}
+			tabindex={closeOnBackdrop ? 0 : -1}
 			class="click-to-close-layer"
-			onclick={closeModal}
-			onkeypress={closeModal}
+			class:inert={!closeOnBackdrop}
+			onclick={onBackdropClick}
+			onkeypress={onBackdropClick}
 			role="button"
 			style="--zIndex: {zIndexInternal.clickToCloseLayer}"
 		></div>
 
 		{#if !props.persistent}
 			<div class="close-button-wrap" style="--zIndex: {zIndexInternal.closeButton}">
-				<button class="close-button" data-test="close-button" onclick={closeModal}>×</button>
+				<button
+					class="close-button"
+					class:has-icon={Boolean(props.closeIconSrc)}
+					data-test="close-button"
+					aria-label="Close"
+					onclick={closeModal}
+				>
+					{#if props.closeIconSrc}
+						<img src={props.closeIconSrc} alt="" class="close-icon" />
+					{:else}
+						×
+					{/if}
+				</button>
 			</div>
 		{/if}
-		{@render props.children()}
+		<div class="content-layer" style="--zIndex: {zIndexInternal.contentLayer}">
+			{@render props.children()}
+		</div>
 	</div>
 </div>
 
@@ -111,6 +137,26 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
+
+		&.inert {
+			pointer-events: none;
+		}
+	}
+
+	.content-layer {
+		position: relative;
+		z-index: var(--zIndex);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	.content-layer > :global(*) {
+		pointer-events: auto;
 	}
 
 	.close-button-wrap {
@@ -126,9 +172,30 @@
 		font-size: 3rem;
 		font-weight: 900;
 		background-color: transparent;
-		border-color: transparent;
-		line-height: 0px; /* to remove the button style influence */
+		border: none;
+		line-height: 0;
 		width: 3rem;
 		height: 3rem;
+	}
+
+	.close-button.has-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem;
+		margin: 0.35rem;
+		width: 3.25rem;
+		height: 3.25rem;
+		font-size: 0;
+	}
+
+	.close-icon {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		display: block;
+		pointer-events: none;
+		/* Sprite has a black plate — screen blend drops it on dark overlays */
+		mix-blend-mode: screen;
 	}
 </style>

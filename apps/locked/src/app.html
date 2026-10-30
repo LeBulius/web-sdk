@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<link
+			rel="preload"
+			href="%sveltekit.assets%/fonts/Outfit-SemiBold.ttf"
+			as="font"
+			type="font/ttf"
+			crossorigin
+		/>
+		<style>
+			@font-face {
+				font-family: 'Outfit SemiBold';
+				src: url('%sveltekit.assets%/fonts/Outfit-SemiBold.ttf') format('truetype');
+				font-weight: 100 900;
+				font-style: normal;
+				font-display: block;
+			}
+			@font-face {
+				font-family: 'Kontora Black';
+				src: url('%sveltekit.assets%/fonts/Outfit-SemiBold.ttf') format('truetype');
+				font-weight: 100 900;
+				font-style: normal;
+				font-display: block;
+			}
+		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		%sveltekit.head%
+	</head>
+	<body style="margin: 0; padding: 0; overflow: hidden; background-color: black">
+		<div>%sveltekit.body%</div>
+	</body>
+</html>

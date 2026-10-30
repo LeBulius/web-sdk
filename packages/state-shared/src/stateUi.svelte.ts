@@ -63,6 +63,8 @@ export const stateUi = $state({
 	freeSpinCounterCurrent: 0,
 	freeSpinCounterTotal: 0,
 	menuOpen: false,
+	betMenuOpen: false,
+	autoplayMenuOpen: false,
 	drawerFold: false,
 	drawerButtonShow: false,
 	config: {

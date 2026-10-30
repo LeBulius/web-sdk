@@ -1,0 +1,6 @@
+{
+	"description": "Optional per-game art and colour for the shared UI (packages/ui-builder/ui.json). No positions or structure. Empty until Locked In UI / Visual Assets supply values.",
+	"pin": "1.0.0",
+	"colors": {},
+	"art": {}
+}

@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "बैलेंस",
+	"WIN": "जीत",
+	"BET": "बेट",
+	"BET MENU": "बेट मेनू",
+	"BONUS": "बोनस",
+	"DISABLE": "अक्षम",
+	"AUTOPLAY": "ऑटोप्ले",
+	"NUMBER OF ROUNDS": "राउंड की संख्या",
+	"TURBO": "टर्बो",
+	"SETTINGS": "सेटिंग्स",
+	"MENU": "मेनू",
+	"FREE SPINS": "फ्री स्पिन",
+	"TOTAL WIN": "कुल जीत",
+	"EXTRA CHANCE": "अतिरिक्त मौका",
+};

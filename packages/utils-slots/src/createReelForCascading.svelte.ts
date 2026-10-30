@@ -130,15 +130,22 @@ export function createReelForCascading<TRawSymbol extends object, TSymbolState e
 
 	const fallIn = async () => {
 		const fallInDelayMultiplier = paddingSize / reelLength - 1;
+		const paddingDelay =
+			reelState.spinOptions().reelFallInDelay * Math.max(0, fallInDelayMultiplier);
+		// Fast/turbo uses paddingSize 0 — still stagger by reel index so short
+		// exterior reels don't land before the middle reels.
+		const indexDelay =
+			paddingDelay > 0
+				? 0
+				: reelState.spinOptions().reelFallInDelay * reelOptions.reelIndex;
 		const waitToStartFallingIn = async () =>
-			await waitForTimeout(reelState.spinOptions().reelFallInDelay * fallInDelayMultiplier);
+			await waitForTimeout(paddingDelay + indexDelay);
 
 		// Q: When to skip the waitToStartFallingIn?
-		// A: When stop button is clicked(isTurbo) and is noStop is false
-		if (noStop) {
+		// A: Never skip entirely on turbo — only skip the interruptible wrapper.
+		//    Index delay above keeps left→right land order on diamond boards.
+		if (noStop || stateBet.isTurbo) {
 			await waitToStartFallingIn();
-		} else if (stateBet.isTurbo) {
-			// skip
 		} else {
 			await interruptible.add(waitToStartFallingIn);
 		}

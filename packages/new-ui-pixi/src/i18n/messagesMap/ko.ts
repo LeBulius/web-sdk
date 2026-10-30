@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "잔액",
+	"WIN": "당첨",
+	"BET": "베팅",
+	"BET MENU": "베팅 메뉴",
+	"BONUS": "보너스",
+	"DISABLE": "비활성화",
+	"AUTOPLAY": "자동 플레이",
+	"NUMBER OF ROUNDS": "라운드 수",
+	"TURBO": "터보",
+	"SETTINGS": "설정",
+	"MENU": "메뉴",
+	"FREE SPINS": "무료 스핀",
+	"TOTAL WIN": "총 당첨",
+	"EXTRA CHANCE": "추가 기회",
+};

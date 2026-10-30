@@ -1,0 +1,5 @@
+spineboy is the Esoteric Software sample for Spine 4.2
+(spine-runtimes examples/spineboy, branch 4.2).
+Spine Runtimes License: https://github.com/EsotericSoftware/spine-runtimes/blob/4.2/LICENSE
+It is a fixture so a real Locked In export can replace this slot with no code change.
+It is not a Locked In character.

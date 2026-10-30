@@ -1,0 +1,318 @@
+{
+	"generated": true,
+	"generator": "pnpm builder:rounds",
+	"note": "Generated from the Locked In book sample and MATH_EVENTS.md. SlotMath Dev can replace this file. It is not part of builder.json and must not be bundled.",
+	"events": [
+		{
+			"type": "contrabandSwap",
+			"count": 2219,
+			"fields": [
+				"from",
+				"positions",
+				"to"
+			],
+			"inMathEvents": true,
+			"scope": "game",
+			"fieldPaths": [
+				"from",
+				"from.reel",
+				"from.row",
+				"from.symbol",
+				"positions",
+				"positions.reel",
+				"positions.row",
+				"to",
+				"to.reel",
+				"to.row",
+				"to.symbol"
+			]
+		},
+		{
+			"type": "finalWin",
+			"count": 4624,
+			"fields": [
+				"amount"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"amount"
+			],
+			"genericFields": [
+				"amount"
+			],
+			"gameDataFields": []
+		},
+		{
+			"type": "fireFramesPlaced",
+			"count": 60992,
+			"fields": [
+				"newPositions",
+				"positions"
+			],
+			"inMathEvents": true,
+			"scope": "game",
+			"fieldPaths": [
+				"newPositions",
+				"newPositions.reel",
+				"newPositions.row",
+				"positions",
+				"positions.reel",
+				"positions.row"
+			]
+		},
+		{
+			"type": "freeSpinEnd",
+			"count": 3915,
+			"fields": [
+				"amount",
+				"winLevel"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"amount",
+				"winLevel"
+			],
+			"genericFields": [
+				"amount",
+				"winLevel"
+			],
+			"gameDataFields": []
+		},
+		{
+			"type": "freeSpinRetrigger",
+			"count": 750,
+			"fields": [
+				"positions",
+				"totalFs"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"positions",
+				"positions.reel",
+				"positions.row",
+				"totalFs"
+			],
+			"genericFields": [
+				"totalFs"
+			],
+			"gameDataFields": [
+				"positions"
+			]
+		},
+		{
+			"type": "freeSpinTrigger",
+			"count": 3915,
+			"fields": [
+				"positions",
+				"totalFs"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"positions",
+				"positions.reel",
+				"positions.row",
+				"totalFs"
+			],
+			"genericFields": [
+				"totalFs"
+			],
+			"gameDataFields": [
+				"positions"
+			]
+		},
+		{
+			"type": "newExpandingWilds",
+			"count": 2874,
+			"fields": [
+				"newWilds"
+			],
+			"inMathEvents": true,
+			"scope": "game",
+			"fieldPaths": [
+				"newWilds",
+				"newWilds.mult",
+				"newWilds.reel",
+				"newWilds.row"
+			]
+		},
+		{
+			"type": "reveal",
+			"count": 32444,
+			"fields": [
+				"anticipation",
+				"board",
+				"gameType",
+				"paddingPositions"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"anticipation",
+				"board",
+				"board.contraband",
+				"board.fireFrame",
+				"board.name",
+				"board.scatter",
+				"board.wild",
+				"gameType",
+				"paddingPositions"
+			],
+			"genericFields": [
+				"gameType",
+				"anticipation"
+			],
+			"gameDataFields": [
+				"board",
+				"paddingPositions"
+			]
+		},
+		{
+			"type": "setTotalWin",
+			"count": 60992,
+			"fields": [
+				"amount"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"amount"
+			],
+			"genericFields": [
+				"amount"
+			],
+			"gameDataFields": []
+		},
+		{
+			"type": "setWin",
+			"count": 77013,
+			"fields": [
+				"amount",
+				"winLevel"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"amount",
+				"winLevel"
+			],
+			"genericFields": [
+				"amount",
+				"winLevel"
+			],
+			"gameDataFields": []
+		},
+		{
+			"type": "tumbleBoard",
+			"count": 28548,
+			"fields": [
+				"explodingSymbols",
+				"newSymbols"
+			],
+			"inMathEvents": true,
+			"scope": "game",
+			"fieldPaths": [
+				"explodingSymbols",
+				"explodingSymbols.reel",
+				"explodingSymbols.row",
+				"newSymbols",
+				"newSymbols.contraband",
+				"newSymbols.name",
+				"newSymbols.scatter",
+				"newSymbols.wild"
+			]
+		},
+		{
+			"type": "updateFreeSpin",
+			"count": 27820,
+			"fields": [
+				"amount",
+				"total"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"amount",
+				"total"
+			],
+			"genericFields": [
+				"amount",
+				"total"
+			],
+			"gameDataFields": []
+		},
+		{
+			"type": "updateGrid",
+			"count": 93455,
+			"fields": [
+				"fireFrames",
+				"gridMultipliers"
+			],
+			"inMathEvents": true,
+			"scope": "game",
+			"fieldPaths": [
+				"fireFrames",
+				"fireFrames.reel",
+				"fireFrames.row",
+				"gridMultipliers"
+			]
+		},
+		{
+			"type": "winInfo",
+			"count": 45597,
+			"fields": [
+				"totalWin",
+				"wins"
+			],
+			"inMathEvents": true,
+			"scope": "generic",
+			"fieldPaths": [
+				"totalWin",
+				"wins",
+				"wins.kind",
+				"wins.meta",
+				"wins.meta.globalMult",
+				"wins.meta.gridMult",
+				"wins.meta.symbolMult",
+				"wins.meta.ways",
+				"wins.meta.winWithoutMult",
+				"wins.multiplier",
+				"wins.positions",
+				"wins.positions.reel",
+				"wins.positions.row",
+				"wins.symbol",
+				"wins.win"
+			],
+			"genericFields": [
+				"totalWin",
+				"wins.win",
+				"wins.multiplier"
+			],
+			"gameDataFields": [
+				"wins.symbol",
+				"wins.kind",
+				"wins.meta",
+				"wins.positions"
+			]
+		},
+		{
+			"type": "wincap",
+			"count": 472,
+			"fields": [
+				"amount"
+			],
+			"inMathEvents": false,
+			"scope": "generic",
+			"fieldPaths": [
+				"amount"
+			],
+			"genericFields": [
+				"amount"
+			],
+			"gameDataFields": []
+		}
+	]
+}

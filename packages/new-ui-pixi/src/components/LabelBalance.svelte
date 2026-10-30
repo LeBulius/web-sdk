@@ -1,0 +1,41 @@
+<script lang="ts">
+	import { Container, Text } from 'pixi-svelte';
+	import { stateBet } from 'state-shared';
+	import { numberToBalanceWinCurrencyString } from 'utils-shared/amount';
+	import { i18nDerived } from '../i18n/i18nDerived';
+	import FitText from './FitText.svelte';
+
+	type Props = { stacked?: boolean; align?: 'left' | 'center'; maxWidth?: number };
+	const { align = 'left', maxWidth = 165 }: Props = $props();
+
+	const ax = $derived(align === 'center' ? 0.5 : 0);
+	const textAlign = $derived(align === 'center' ? 'center' : 'left');
+</script>
+
+<Container>
+	<Text
+		text={i18nDerived.balance()}
+		anchor={{ x: ax, y: 0.5 }}
+		y={-12}
+		style={{
+			align: textAlign,
+			fontFamily: 'Kontora Black',
+			fontWeight: '600',
+			fontSize: 18,
+			fill: 0x22d3ee,
+		}}
+	/>
+	<FitText
+		text={numberToBalanceWinCurrencyString(stateBet.balanceAmount)}
+		{maxWidth}
+		anchor={{ x: ax, y: 0.5 }}
+		y={12}
+		style={{
+			align: textAlign,
+			fontFamily: 'Kontora Black',
+			fontWeight: '700',
+			fontSize: 25,
+			fill: 0xffffff,
+		}}
+	/>
+</Container>

@@ -1,6 +1,9 @@
 import type { paths } from './schema';
 import { fetcher } from 'utils-fetcher';
 
+// Stake passes rgs_url without a scheme; the dev-only local RGS passes a full http:// URL.
+const withScheme = (rgsUrl: string) => (/^https?:\/\//.test(rgsUrl) ? rgsUrl : `https://${rgsUrl}`);
+
 export const rgsFetcher = {
 	post: async function post<
 		T extends keyof paths,
@@ -13,7 +16,7 @@ export const rgsFetcher = {
 		const response = await fetcher({
 			method: 'POST',
 			variables: options.variables,
-			endpoint: `https://${options.rgsUrl}${options.url}`,
+			endpoint: `${withScheme(options.rgsUrl)}${options.url}`,
 		});
 
 		if (response.status !== 200) console.error('error', response);
@@ -26,7 +29,7 @@ export const rgsFetcher = {
 	>(options: { url: T; rgsUrl: string }): Promise<TResponse> {
 		const response = await fetcher({
 			method: 'GET',
-			endpoint: `https://${options.rgsUrl}${options.url}`,
+			endpoint: `${withScheme(options.rgsUrl)}${options.url}`,
 		});
 
 		if (response.status !== 200) console.error('error', response);

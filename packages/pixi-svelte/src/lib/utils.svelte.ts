@@ -58,16 +58,33 @@ export function detectWebGL() {
 	return -1;
 }
 
-export const preloadFont = () =>
+const preloadKontora = async () => {
+	if (typeof document === 'undefined' || !document.fonts?.load) return;
+	try {
+		// Pixi samples Kontora at 600–800; cover the full declared weight range.
+		await Promise.all([
+			document.fonts.load("900 48px 'Kontora Black'"),
+			document.fonts.load("700 48px 'Kontora Black'"),
+			document.fonts.load("600 48px 'Kontora Black'"),
+			document.fonts.load("400 48px 'Kontora Black'"),
+		]);
+		await document.fonts.ready;
+		if (!document.fonts.check("900 48px 'Kontora Black'")) {
+			console.error('Kontora Black failed to load — UI may fall back to another face');
+		}
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+const preloadTypekit = () =>
 	new Promise<void>((resolve) => {
 		try {
 			WebFont.load({
 				typekit: {
 					id: 'aba0ebl',
 				},
-				active: () => {
-					resolve();
-				},
+				active: () => resolve(),
 				inactive: () => {
 					console.error('Web font load inactive');
 					resolve();
@@ -78,6 +95,9 @@ export const preloadFont = () =>
 			resolve();
 		}
 	});
+
+/** Load Kontora (required for new UI) in parallel with optional Typekit. */
+export const preloadFont = () => Promise.all([preloadKontora(), preloadTypekit()]).then(() => {});
 
 export function propsSyncEffect<TProps extends object, TTarget>({
 	props,

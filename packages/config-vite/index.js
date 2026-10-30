@@ -20,7 +20,10 @@ export default () =>
 		css: {
 			preprocessorOptions: {
 				scss: {
-					api: 'modern-compiler',
+					// 'modern' instead of 'modern-compiler': Vite 6.2.0's preprocessCSS (used by svelte's
+					// vitePreprocess for <style lang="scss">) starts a long-lived sass-embedded compiler
+					// that is never disposed, so `vite build` never exits. 'modern' compiles per call.
+					api: 'modern',
 				},
 			},
 		},

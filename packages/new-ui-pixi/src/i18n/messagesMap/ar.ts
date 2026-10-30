@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "الرصيد",
+	"WIN": "الربح",
+	"BET": "الرهان",
+	"BET MENU": "قائمة الرهان",
+	"BONUS": "بونص",
+	"DISABLE": "تعطيل",
+	"AUTOPLAY": "لعب تلقائي",
+	"NUMBER OF ROUNDS": "عدد الجولات",
+	"TURBO": "توربو",
+	"SETTINGS": "الإعدادات",
+	"MENU": "القائمة",
+	"FREE SPINS": "لفات مجانية",
+	"TOTAL WIN": "إجمالي الربح",
+	"EXTRA CHANCE": "فرصة إضافية",
+};

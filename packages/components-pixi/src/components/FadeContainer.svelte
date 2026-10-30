@@ -15,7 +15,10 @@
 	const alpha = new Tween(show ? 1 : 0, { duration: duration });
 
 	$effect(() => {
-		alpha.set(show ? 1 : 0, { duration: duration }).then(() => oncomplete?.());
+		const target = show ? 1 : 0;
+		const complete = oncomplete;
+		// Always settle the promise even when already at the target alpha.
+		void alpha.set(target, { duration: duration }).then(() => complete?.());
 	});
 
 	onMount(async () => {
@@ -28,7 +31,12 @@
 </script>
 
 {#if alpha.current > 0 || persistent}
-	<Container {...restProps} alpha={alpha.current}>
+	<Container
+		{...restProps}
+		alpha={alpha.current}
+		eventMode={show ? restProps.eventMode : 'none'}
+		interactiveChildren={show}
+	>
 		{@render children()}
 	</Container>
 {/if}

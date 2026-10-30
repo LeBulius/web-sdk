@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "余额",
+	"WIN": "赢分",
+	"BET": "投注",
+	"BET MENU": "投注菜单",
+	"BONUS": "奖金",
+	"DISABLE": "禁用",
+	"AUTOPLAY": "自动旋转",
+	"NUMBER OF ROUNDS": "旋转次数",
+	"TURBO": "极速",
+	"SETTINGS": "设置",
+	"MENU": "菜单",
+	"FREE SPINS": "免费旋转",
+	"TOTAL WIN": "总赢分",
+	"EXTRA CHANCE": "额外机会",
+};

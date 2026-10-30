@@ -1,0 +1,9 @@
+{
+  "extends": "config-ts/base.json",
+  "compilerOptions": {
+    "preserveSymlinks": false,
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "files": ["./src/vite-plugin-layout.ts"]
+}

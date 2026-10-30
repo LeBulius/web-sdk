@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { waitForResolve } from 'utils-shared/wait';
+	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { FadeContainer } from 'components-pixi';
 
 	import { getContext } from '../context';
@@ -16,19 +16,19 @@
 	let show = $state(true);
 	let oncomplete = $state(() => {});
 
+	/** Resolve must be set before toggling show — FadeContainer's $effect can flush on show change. */
+	const fadeTo = async (next: boolean) => {
+		if (show === next) return;
+		const faded = waitForResolve((resolve) => {
+			oncomplete = resolve;
+		});
+		show = next;
+		await Promise.race([faded, waitForTimeout(500)]);
+	};
+
 	context.eventEmitter.subscribeOnMount({
-		uiShow: async () => {
-			if (show === false) {
-				show = true;
-				await waitForResolve((resolve) => (oncomplete = resolve));
-			}
-		},
-		uiHide: async () => {
-			if (show === true) {
-				show = false;
-				await waitForResolve((resolve) => (oncomplete = resolve));
-			}
-		},
+		uiShow: async () => fadeTo(true),
+		uiHide: async () => fadeTo(false),
 	});
 </script>
 

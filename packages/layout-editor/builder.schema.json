@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Locked In builder.json (visual builder v1)",
+  "type": "object",
+  "required": ["version", "layout", "art", "spine", "audio", "events"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 1 },
+    "layout": { "$ref": "#/definitions/layout" },
+    "art": { "type": "object" },
+    "spine": { "type": "object" },
+    "audio": { "type": "object" },
+    "events": { "type": "object" }
+  },
+  "definitions": {
+    "viewportKey": {
+      "enum": ["desktop", "laptop", "popoutL", "popoutS", "mobileL", "mobileM", "mobileS"]
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "scale": { "type": "number" },
+        "anchor": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "visible": { "type": "boolean" },
+        "z": { "type": "number" },
+        "pin": { "enum": ["top", "bottom", "center", "none"] },
+        "parent": { "type": "string" },
+        "follow": { "type": "boolean" },
+        "offset": { "type": "boolean", "description": "x/y are an offset from the game's computed position (drag-layers)" },
+        "w": { "type": "number", "minimum": 0 },
+        "h": { "type": "number", "minimum": 0 },
+        "kind": { "enum": ["node", "text", "button"] },
+        "messageId": { "type": "string" },
+        "fontSize": { "type": "number", "minimum": 0 }
+      }
+    },
+    "viewport": {
+      "type": "object",
+      "required": ["w", "h", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "items": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/item" },
+          "propertyNames": { "not": { "const": "*" } }
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "required": ["viewports", "tunables", "reserved"],
+      "additionalProperties": false,
+      "properties": {
+        "viewports": {
+          "type": "object",
+          "required": ["desktop", "laptop", "popoutL", "popoutS", "mobileL", "mobileM", "mobileS"],
+          "additionalProperties": false,
+          "properties": {
+            "desktop": { "$ref": "#/definitions/viewport" },
+            "laptop": { "$ref": "#/definitions/viewport" },
+            "popoutL": { "$ref": "#/definitions/viewport" },
+            "popoutS": { "$ref": "#/definitions/viewport" },
+            "mobileL": { "$ref": "#/definitions/viewport" },
+            "mobileM": { "$ref": "#/definitions/viewport" },
+            "mobileS": { "$ref": "#/definitions/viewport" }
+          }
+        },
+        "tunables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "desktop": { "type": "number" },
+              "laptop": { "type": "number" },
+              "popoutL": { "type": "number" },
+              "popoutS": { "type": "number" },
+              "mobileL": { "type": "number" },
+              "mobileM": { "type": "number" },
+              "mobileS": { "type": "number" }
+            }
+          }
+        },
+        "reserved": {
+          "type": "object",
+          "required": ["controlBar"],
+          "additionalProperties": false,
+          "properties": {
+            "controlBar": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "desktop": { "type": "number" },
+                "laptop": { "type": "number" },
+                "popoutL": { "type": "number" },
+                "popoutS": { "type": "number" },
+                "mobileL": { "type": "number" },
+                "mobileM": { "type": "number" },
+                "mobileS": { "type": "number" }
+              }
+            },
+            "safeArea": { "type": "object" }
+          }
+        },
+        "frame": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["boardAnchor", "titleYFactor", "titleMinY", "plaqueLocalYFactor", "framePadFactor"],
+          "properties": {
+            "boardAnchor": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": { "type": "number" }
+            },
+            "titleYFactor": { "type": "number" },
+            "titleMinY": { "type": "number" },
+            "plaqueLocalYFactor": { "type": "number" },
+            "framePadFactor": { "type": "number" },
+            "design": {
+              "type": "object",
+              "description": "Main-layout design frame per layout type (desktop/tablet/landscape/portrait)",
+              "additionalProperties": {
+                "type": "object",
+                "required": ["w", "h"],
+                "properties": { "w": { "type": "number" }, "h": { "type": "number" } }
+              }
+            }
+          }
+        },
+        "grid": {
+          "type": "object",
+          "description": "Reel grid per viewport key: origin, cell spacing (pitch), per-reel offsets, per-cell nudges (±16), symbolScale",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "origin": { "type": "object" },
+              "pitch": { "type": "object" },
+              "reels": { "type": "array" },
+              "cells": { "type": "object" },
+              "symbolScale": { "type": "number", "exclusiveMinimum": 0, "maximum": 3 }
+            }
+          }
+        },
+        "layers": {
+          "type": "object",
+          "description": "Layer panel: group order, item order per group, editor-only hidden/locked ids",
+          "additionalProperties": false,
+          "properties": {
+            "groups": { "type": "array", "items": { "type": "string" } },
+            "order": { "type": "object" },
+            "hidden": { "type": "array", "items": { "type": "string" } },
+            "locked": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "popups": { "type": "object" }
+      }
+    }
+  }
+}

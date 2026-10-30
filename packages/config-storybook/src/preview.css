@@ -1,0 +1,23 @@
+/* Fullscreen Pixi games: never show document scrollbars in the preview iframe */
+html,
+body {
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	overflow: hidden !important;
+	overscroll-behavior: none;
+}
+
+#storybook-root,
+#root {
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	overflow: hidden !important;
+}
+
+canvas {
+	display: block;
+}

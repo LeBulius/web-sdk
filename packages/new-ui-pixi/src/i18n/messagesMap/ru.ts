@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "БАЛАНС",
+	"WIN": "ВЫИГРЫШ",
+	"BET": "СТАВКА",
+	"BET MENU": "МЕНЮ СТАВОК",
+	"BONUS": "БОНУС",
+	"DISABLE": "ОТКЛЮЧИТЬ",
+	"AUTOPLAY": "АВТОИГРА",
+	"NUMBER OF ROUNDS": "ЧИСЛО РАУНДОВ",
+	"TURBO": "ТУРБО",
+	"SETTINGS": "НАСТРОЙКИ",
+	"MENU": "МЕНЮ",
+	"FREE SPINS": "ФРИСПИНЫ",
+	"TOTAL WIN": "ОБЩИЙ ВЫИГРЫШ",
+	"EXTRA CHANCE": "ДОП. ШАНС",
+};

@@ -1,0 +1,17 @@
+{
+  "extends": "config-ts/base.json",
+  "compilerOptions": {
+    "types": ["node", "svelte"]
+  },
+  "include": ["."],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules",
+    "test",
+    "scripts",
+    "src/vite-plugin-layout.ts",
+    "src/plugin",
+    "src/events/check.mjs"
+  ]
+}

@@ -29,14 +29,16 @@
 			preference: 'webgpu',
 			powerPreference: 'high-performance',
 			resolution: devicePixelRatio.current,
-			resizeTo: window,
+			// Size to the fixed shell, not window — avoids document scrollbars in Storybook iframes
+			resizeTo: wrap,
 		});
 
 		wrap.appendChild(context.stateApp.pixiApplication.canvas);
 
 		// to prevent that you can't scroll the page with touch on the canvas. https://github.com/pixijs/pixijs/issues/4824
 		context.stateApp.pixiApplication.renderer.events.autoPreventDefault = false;
-		context.stateApp.pixiApplication.renderer.canvas.style.touchAction = 'auto';
+		context.stateApp.pixiApplication.renderer.canvas.style.touchAction = 'none';
+		context.stateApp.pixiApplication.canvas.style.display = 'block';
 	};
 
 	onMount(async () => {
@@ -55,8 +57,17 @@
 	});
 </script>
 
-<div bind:this={wrap}>
+<div class="pixi-root" bind:this={wrap}>
 	{#if initialised}
 		{@render props.children()}
 	{/if}
 </div>
+
+<style>
+	/* Out of document flow so a full-size canvas cannot create body scrollbars */
+	.pixi-root {
+		position: fixed;
+		inset: 0;
+		overflow: hidden;
+	}
+</style>

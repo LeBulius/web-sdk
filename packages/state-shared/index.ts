@@ -6,3 +6,5 @@ export * from './src/stateModal.svelte';
 export * from './src/stateSound.svelte';
 export * from './src/stateUi.svelte';
 export * from './src/stateI18n.svelte';
+export * from './src/stateStorybook.svelte';
+

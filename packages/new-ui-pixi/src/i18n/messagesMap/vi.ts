@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "SỐ DƯ",
+	"WIN": "THẮNG",
+	"BET": "CƯỢC",
+	"BET MENU": "MENU CƯỢC",
+	"BONUS": "BONUS",
+	"DISABLE": "TẮT",
+	"AUTOPLAY": "TỰ ĐỘNG",
+	"NUMBER OF ROUNDS": "SỐ VÒNG",
+	"TURBO": "TURBO",
+	"SETTINGS": "CÀI ĐẶT",
+	"MENU": "MENU",
+	"FREE SPINS": "VÒNG MIỄN PHÍ",
+	"TOTAL WIN": "TỔNG THẮNG",
+	"EXTRA CHANCE": "CƠ HỘI THÊM",
+};

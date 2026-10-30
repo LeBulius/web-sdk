@@ -1,18 +1,46 @@
 import { fromPromise } from 'xstate';
 
 import { API_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
-import { stateBet, stateUrlDerived, stateModal } from 'state-shared';
+import { stateBet, stateConfig, stateUrlDerived, stateModal, stateMeta } from 'state-shared';
 import { requestBet, requestEndRound } from 'rgs-requests';
 
 import type { BaseBet } from './types';
 
+const snapBetAmountToLadder = () => {
+	const levels = stateConfig.betAmountOptions;
+	if (!levels?.length) return;
+	const apiLevel = Math.round(stateBet.betAmount * API_AMOUNT_MULTIPLIER);
+	const apiLevels = levels.map((level) => Math.round(level * API_AMOUNT_MULTIPLIER));
+	if (apiLevels.includes(apiLevel)) return;
+	const snapped = levels[0];
+	stateBet.betAmount = snapped;
+	stateBet.wageredBetAmount = snapped;
+};
+
 const handleRequestBet = async ({ onError }: { onError: () => void }) => {
 	try {
+		if (stateUrlDerived.replay()) {
+			onError();
+			return;
+		}
+
+		if (!stateUrlDerived.rgsUrl()) {
+			// Storybook / local: in-game Spin has no RGS. Prefer the green Action button.
+			console.warn(
+				'Skipping RGS bet (no rgs_url). In Storybook, use the green Action button to play local books.',
+			);
+			onError();
+			stateBet.autoSpinsCounter = 0;
+			return;
+		}
+
+		snapBetAmountToLadder();
+
 		const data = await requestBet({
 			rgsUrl: stateUrlDerived.rgsUrl(),
 			sessionID: stateUrlDerived.sessionID(),
 			currency: stateBet.currency,
-			mode: stateBet.activeBetModeKey,
+			mode: stateMeta.betModeMeta?.[stateBet.activeBetModeKey]?.mode ?? stateBet.activeBetModeKey,
 			amount: stateBet.betAmount,
 		});
 
@@ -40,7 +68,7 @@ const handleRequestBet = async ({ onError }: { onError: () => void }) => {
 };
 
 const handleRequestEndRound = async () => {
-	if(stateUrlDerived.replay()) return;
+	if (stateUrlDerived.replay() || !stateUrlDerived.rgsUrl()) return;
 
 	try {
 		const data = await requestEndRound({
@@ -61,7 +89,10 @@ const handleRequestEndRound = async () => {
 			};
 		}
 	} catch (error) {
+		// Must surface — silent failure leaves balance stuck at post-debit (wins never credit).
 		console.error(error);
+		stateModal.modal = { name: 'error', error };
+		stateBet.autoSpinsCounter = 0;
 	}
 };
 
@@ -123,12 +154,13 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 
 	const getBetType: (args: { bet: TBet }) => keyof typeof BET_TYPE_METHODS_MAP = ({ bet }) => {
 		const isBonusGame = checkIsBonusGame(bet);
+		// RGS credits wins only via end-round when payout > 0 (API micro-units).
+		// Prefer payout; fall back to payoutMultiplier for older payloads.
+		const hasPayout =
+			(typeof bet.payout === 'number' && bet.payout > 0) ||
+			(typeof bet.payoutMultiplier === 'number' && bet.payoutMultiplier > 0);
 
-		if (bet.active === true) {
-			if (isBonusGame) return 'bonusWin';
-		}
-
-		if (bet.payoutMultiplier && bet.payoutMultiplier > 0) {
+		if (hasPayout || bet.active === true) {
 			if (isBonusGame) return 'bonusWin';
 			return 'singleRoundWin';
 		}

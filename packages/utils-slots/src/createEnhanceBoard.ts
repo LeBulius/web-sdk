@@ -8,11 +8,16 @@ export function createEnhanceBoard() {
 
 		const { preSpin } = createEnhanceBoardPreSpin({ board });
 		const { spin } = createEnhanceBoardSpin({ board });
-		const settle = (rawBoard?: TRawSymbol[][]) =>
+		const settle = (rawBoard?: TRawSymbol[][]) => {
+			// settle() with no board = stop only. Passing [] wipes symbols (empty spin bug).
+			if (rawBoard === undefined) {
+				board.forEach((reel) => reel.stop());
+				return;
+			}
 			board.forEach((reel, reelIndex) => {
-				const rawSymbols = rawBoard?.[reelIndex] || [];
-				reel.setSymbolsWithRawSymbols(rawSymbols);
+				reel.setSymbolsWithRawSymbols(rawBoard[reelIndex] ?? []);
 			});
+		};
 		const stop = () => board.forEach((reel) => reel.stop());
 		const readyToSpinEffect = () => {
 			board.forEach((reel) => reel.readyToSpinEffect());

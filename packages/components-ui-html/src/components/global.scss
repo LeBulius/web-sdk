@@ -1,9 +1,23 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
 body {
 	font-family: 'proxima-nova', sans-serif;
 	cursor: default;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
+}
+
+/* Avoid inline-canvas baseline gap that can force a 1px scrollbar */
+canvas {
+	display: block;
 }
 
 :root {

@@ -1,0 +1,661 @@
+{
+	"$schema": "../../../../packages/layout-editor/builder.schema.json",
+	"version": 1,
+	"layout": {
+		"viewports": {
+			"desktop": {
+				"w": 1200,
+				"h": 675,
+				"items": {
+					"boardFrame": {
+						"parent": "board"
+					},
+					"fireRims": {
+						"parent": "board",
+						"follow": true
+					},
+					"gameTitle": {
+						"anchor": [
+							0.5,
+							1
+						],
+						"w": 280,
+						"kind": "text",
+						"messageId": "game.title",
+						"fontSize": 28
+					},
+					"waysPlaque": {
+						"parent": "board",
+						"offset": true,
+						"w": 160,
+						"h": 32,
+						"kind": "text",
+						"messageId": "ways.plaque",
+						"fontSize": 14
+					}
+				}
+			},
+			"laptop": {
+				"w": 1024,
+				"h": 576,
+				"items": {}
+			},
+			"popoutL": {
+				"w": 800,
+				"h": 450,
+				"items": {}
+			},
+			"popoutS": {
+				"w": 400,
+				"h": 225,
+				"items": {}
+			},
+			"mobileL": {
+				"w": 425,
+				"h": 812,
+				"items": {
+					"boardFrame": {
+						"parent": "board"
+					},
+					"fireRims": {
+						"parent": "board",
+						"follow": true
+					},
+					"gameTitle": {
+						"anchor": [
+							0.5,
+							1
+						],
+						"w": 280,
+						"kind": "text",
+						"messageId": "game.title",
+						"fontSize": 28
+					},
+					"waysPlaque": {
+						"parent": "board",
+						"offset": true,
+						"w": 160,
+						"h": 32,
+						"kind": "text",
+						"messageId": "ways.plaque",
+						"fontSize": 14
+					}
+				}
+			},
+			"mobileM": {
+				"w": 375,
+				"h": 667,
+				"items": {}
+			},
+			"mobileS": {
+				"w": 320,
+				"h": 568,
+				"items": {}
+			},
+			"mobileL_land": {
+				"w": 812,
+				"h": 425,
+				"items": {}
+			},
+			"mobileM_land": {
+				"w": 667,
+				"h": 375,
+				"items": {}
+			},
+			"mobileS_land": {
+				"w": 568,
+				"h": 320,
+				"items": {}
+			}
+		},
+		"tunables": {},
+		"reserved": {},
+		"frame": {
+			"boardAnchor": [
+				0.5,
+				0.5
+			],
+			"titleYFactor": 0.07,
+			"titleMinY": 28,
+			"plaqueLocalYFactor": 0.34,
+			"framePadFactor": 0.34,
+			"design": {
+				"desktop": {
+					"w": 1422,
+					"h": 800
+				},
+				"tablet": {
+					"w": 1000,
+					"h": 1000
+				},
+				"landscape": {
+					"w": 1600,
+					"h": 900
+				},
+				"portrait": {
+					"w": 800,
+					"h": 1422
+				}
+			}
+		}
+	},
+	"art": {
+		"mark": {
+			"src": "art/mark/mark.webp"
+		},
+		"slots": {
+			"board_fireRim": {
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"lockToCell": 2
+			},
+			"background_base": {
+				"src": "art/background_base/base.webp",
+				"w": 64,
+				"h": 36,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_base_mobile": {
+				"src": "art/background_base_mobile/base_mobile.webp",
+				"w": 36,
+				"h": 64,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_3s": {
+				"src": "art/background_3s/bg3s.webp",
+				"w": 64,
+				"h": 36,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_3s_mobile": {
+				"src": "art/background_3s_mobile/bg3s_mobile.webp",
+				"w": 36,
+				"h": 64,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_4s": {
+				"src": "art/background_4s/bg4s.webp",
+				"w": 64,
+				"h": 36,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_4s_mobile": {
+				"src": "art/background_4s_mobile/bg4s_mobile.webp",
+				"w": 36,
+				"h": 64,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_5s": {
+				"src": "art/background_5s/bg5s.webp",
+				"w": 64,
+				"h": 36,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_5s_mobile": {
+				"src": "art/background_5s_mobile/bg5s_mobile.webp",
+				"w": 36,
+				"h": 64,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_start": {
+				"src": "art/background_start/start.webp",
+				"w": 64,
+				"h": 36,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_start_mobile": {
+				"src": "art/background_start_mobile/start_mobile.webp",
+				"w": 36,
+				"h": 64,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_degen": {
+				"src": "art/background_degen/degen.webp",
+				"w": 64,
+				"h": 36,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"background_degen_mobile": {
+				"src": "art/background_degen_mobile/degen_mobile.webp",
+				"w": 36,
+				"h": 64,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"board_frame": {
+				"src": "art/board_frame/frame.webp",
+				"w": 64,
+				"h": 64,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			},
+			"screen_logo": {
+				"src": "art/screen_logo/logo.webp",
+				"w": 48,
+				"h": 16,
+				"anchor": [
+					0.5,
+					0.5
+				],
+				"placeholder": true
+			}
+		},
+		"moods": {
+			"base": "background_base",
+			"3s": "background_3s",
+			"4s": "background_4s",
+			"5s": "background_5s",
+			"start": "background_start",
+			"degen": "background_degen"
+		},
+		"placeholders": true
+	},
+	"spine": {
+		"eventMap": [
+			{
+				"bookEvent": "reveal",
+				"skeleton": "spineboy",
+				"anim": "idle",
+				"target": "global",
+				"track": 0,
+				"loop": true
+			}
+		],
+		"items": {
+			"character": {
+				"skeleton": "spineboy"
+			}
+		},
+		"placements": {
+			"character": {
+				"desktop": {
+					"x": 180,
+					"y": 520,
+					"scale": 0.35,
+					"anchor": [
+						0.5,
+						1
+					]
+				},
+				"mobileL": {
+					"x": 212,
+					"y": 640,
+					"scale": 0.28,
+					"anchor": [
+						0.5,
+						1
+					]
+				}
+			}
+		},
+		"spineboy": {
+			"skeleton": "spine/spineboy/spineboy.json",
+			"atlas": "spine/spineboy/spineboy-pma.atlas",
+			"pages": [
+				"spine/spineboy/spineboy-pma.webp"
+			],
+			"version": "4.2.22",
+			"pma": true,
+			"scale": 1,
+			"animations": [
+				"aim",
+				"death",
+				"hoverboard",
+				"idle",
+				"idle-turn",
+				"jump",
+				"portal",
+				"run",
+				"run-to-idle",
+				"shoot",
+				"walk"
+			],
+			"skins": [
+				"default"
+			],
+			"events": [
+				"footstep"
+			]
+		}
+	},
+	"audio": {
+		"version": 1,
+		"placeholders": true,
+		"sprite": {
+			"src": "audio/sprite/sprite.m4a",
+			"fallback": "audio/sprite/sprite.ogg",
+			"map": "audio/sprite/sounds.json",
+			"peakDb": -2.8
+		},
+		"files": {
+			"sfx_contraband_swap": {
+				"channel": "sfx",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 0,
+				"durationMs": 160
+			},
+			"sfx_reel_stop": {
+				"channel": "sfx",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 160,
+				"durationMs": 100
+			},
+			"sfx_fire_place": {
+				"channel": "sfx",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 260,
+				"durationMs": 90
+			},
+			"sfx_ew_expand": {
+				"channel": "sfx",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 350,
+				"durationMs": 140
+			},
+			"sfx_win_small": {
+				"channel": "sfx",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 490,
+				"durationMs": 180
+			},
+			"sfx_tumble_explode": {
+				"channel": "sfx",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 670,
+				"durationMs": 120
+			},
+			"jng_fs_intro": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 790,
+				"durationMs": 320
+			},
+			"jng_fs_retrigger": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 1110,
+				"durationMs": 260
+			},
+			"jng_win_lvl1": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 1370,
+				"durationMs": 200
+			},
+			"jng_win_lvl2": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 1570,
+				"durationMs": 200
+			},
+			"jng_win_lvl3": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 1770,
+				"durationMs": 200
+			},
+			"jng_win_lvl4": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 1970,
+				"durationMs": 200
+			},
+			"jng_win_lvl5": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 2170,
+				"durationMs": 200
+			},
+			"jng_win_lvl6": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 2370,
+				"durationMs": 200
+			},
+			"jng_win_lvl7": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 2570,
+				"durationMs": 200
+			},
+			"jng_win_lvl8": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 2770,
+				"durationMs": 200
+			},
+			"jng_win_lvl9": {
+				"channel": "jingle",
+				"gainDb": 0,
+				"loop": false,
+				"placeholder": true,
+				"startMs": 2970,
+				"durationMs": 200
+			},
+			"bgm_base": {
+				"channel": "music",
+				"gainDb": 0,
+				"loop": true,
+				"placeholder": true,
+				"startMs": 3170,
+				"durationMs": 1000
+			},
+			"bgm_fs": {
+				"channel": "music",
+				"gainDb": 0,
+				"loop": true,
+				"placeholder": true,
+				"startMs": 4170,
+				"durationMs": 1000
+			},
+			"bgm_degen": {
+				"channel": "music",
+				"gainDb": 0,
+				"loop": true,
+				"placeholder": true,
+				"startMs": 5170,
+				"durationMs": 1000
+			}
+		},
+		"events": {
+			"reveal": [
+				{
+					"cue": "sfx_reel_stop",
+					"on": "perReelStop",
+					"staggerMs": 80
+				}
+			],
+			"fireFramesPlaced": [
+				{
+					"cue": "sfx_fire_place",
+					"on": "perItem",
+					"staggerMs": 60,
+					"maxVoices": 3
+				}
+			],
+			"contrabandSwap": [
+				{
+					"cue": "sfx_contraband_swap",
+					"on": "once"
+				}
+			],
+			"newExpandingWilds": [
+				{
+					"cue": "sfx_ew_expand",
+					"on": "perItem",
+					"staggerMs": 80
+				}
+			],
+			"winInfo": [
+				{
+					"cue": "sfx_win_small",
+					"on": "once"
+				}
+			],
+			"setWin": [],
+			"tumbleBoard": [
+				{
+					"cue": "sfx_tumble_explode",
+					"on": "once"
+				}
+			],
+			"freeSpinTrigger": [
+				{
+					"cue": "jng_fs_intro",
+					"on": "once",
+					"duckMusicDb": -12
+				}
+			],
+			"freeSpinRetrigger": [
+				{
+					"cue": "jng_fs_retrigger",
+					"on": "once"
+				}
+			]
+		},
+		"silent": [
+			"finalWin",
+			"freeSpinEnd",
+			"setTotalWin",
+			"updateFreeSpin",
+			"updateGrid",
+			"wincap"
+		],
+		"winlevels": {
+			"1": "jng_win_lvl1",
+			"2": "jng_win_lvl2",
+			"3": "jng_win_lvl3",
+			"4": "jng_win_lvl4",
+			"5": "jng_win_lvl5",
+			"6": "jng_win_lvl6",
+			"7": "jng_win_lvl7",
+			"8": "jng_win_lvl8",
+			"9": "jng_win_lvl9"
+		},
+		"music": {
+			"base": {
+				"cue": "bgm_base",
+				"crossfadeMs": 800
+			},
+			"bonus": {
+				"cue": "bgm_fs",
+				"crossfadeMs": 800
+			},
+			"degen_spin": {
+				"cue": "bgm_degen",
+				"crossfadeMs": 600
+			}
+		},
+		"mix": {
+			"phone": {
+				"musicDb": -10,
+				"sfxDb": -3,
+				"jingleDb": -2
+			},
+			"desktop": {
+				"musicDb": -8,
+				"sfxDb": -4,
+				"jingleDb": -3
+			}
+		},
+		"rules": {
+			"ducking": [
+				{
+					"when": "jingle",
+					"music": -12,
+					"releaseMs": 400
+				}
+			],
+			"maxConcurrentSfx": 6
+		}
+	},
+	"events": {},
+	"ui": {
+		"pin": "1.0.0",
+		"uiOverrides": {}
+	}
+}

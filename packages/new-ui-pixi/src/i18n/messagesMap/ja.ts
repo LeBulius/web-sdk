@@ -1,0 +1,16 @@
+export default {
+	"BALANCE": "残高",
+	"WIN": "勝利金",
+	"BET": "ベット",
+	"BET MENU": "ベットメニュー",
+	"BONUS": "ボーナス",
+	"DISABLE": "無効",
+	"AUTOPLAY": "オートプレイ",
+	"NUMBER OF ROUNDS": "ラウンド数",
+	"TURBO": "ターボ",
+	"SETTINGS": "設定",
+	"MENU": "メニュー",
+	"FREE SPINS": "フリースピン",
+	"TOTAL WIN": "合計獲得",
+	"EXTRA CHANCE": "エクストラチャンス",
+};

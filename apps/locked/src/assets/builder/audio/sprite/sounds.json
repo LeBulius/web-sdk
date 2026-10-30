@@ -1,0 +1,90 @@
+{
+	"src": [
+		"sprite.m4a",
+		"sprite.ogg"
+	],
+	"sprite": {
+		"sfx_contraband_swap": [
+			0,
+			160
+		],
+		"sfx_reel_stop": [
+			160,
+			100
+		],
+		"sfx_fire_place": [
+			260,
+			90
+		],
+		"sfx_ew_expand": [
+			350,
+			140
+		],
+		"sfx_win_small": [
+			490,
+			180
+		],
+		"sfx_tumble_explode": [
+			670,
+			120
+		],
+		"jng_fs_intro": [
+			790,
+			320
+		],
+		"jng_fs_retrigger": [
+			1110,
+			260
+		],
+		"jng_win_lvl1": [
+			1370,
+			200
+		],
+		"jng_win_lvl2": [
+			1570,
+			200
+		],
+		"jng_win_lvl3": [
+			1770,
+			200
+		],
+		"jng_win_lvl4": [
+			1970,
+			200
+		],
+		"jng_win_lvl5": [
+			2170,
+			200
+		],
+		"jng_win_lvl6": [
+			2370,
+			200
+		],
+		"jng_win_lvl7": [
+			2570,
+			200
+		],
+		"jng_win_lvl8": [
+			2770,
+			200
+		],
+		"jng_win_lvl9": [
+			2970,
+			200
+		],
+		"bgm_base": [
+			3170,
+			1000
+		],
+		"bgm_fs": [
+			4170,
+			1000
+		],
+		"bgm_degen": [
+			5170,
+			1000
+		]
+	},
+	"placeholders": true,
+	"note": "One Howler sprite. Placeholder tones, not Locked In recordings. SlotMath / SFX can replace the cue files and rebuild."
+}

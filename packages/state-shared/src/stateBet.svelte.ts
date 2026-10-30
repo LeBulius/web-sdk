@@ -7,10 +7,13 @@ export type BetModeKey = string;
 
 export const stateBet = $state({
 	currency: 'USD' as Currency,
-	balanceAmount: 0,
+	balanceAmount: 1000,
 	betAmount: 1,
 	wageredBetAmount: 1,
 	betToResume: null as BetToResume,
+	/** Original replay payload, kept so Play Again can restart the same round. */
+	replayBet: null as BetToResume,
+	replayCostMultiplier: 1,
 	activeBetModeKey: 'BASE' as BetModeKey,
 	winBookEventAmount: 0,
 	autoSpinsLoss: 0,
@@ -54,10 +57,11 @@ const activeBetMode = () => stateMeta.betModeMeta?.[stateBet.activeBetModeKey.to
 	?? null;
 const isContinuousBet = () => stateBet.autoSpinsCounter > 1 || stateBet.isSpaceHold;
 const timeScale = () => (stateBet.isTurbo ? 2 : 1);
-const betCostMultiplier = () =>
-	stateBetDerived.activeBetMode().type === 'activate'
-		? stateBetDerived.activeBetMode().costMultiplier
-		: 1;
+const betCostMultiplier = () => {
+	const mode = stateBetDerived.activeBetMode();
+	if (!mode) return 1;
+	return mode.type === 'activate' ? mode.costMultiplier : 1;
+};
 const betCost = () => stateBet.betAmount * betCostMultiplier();
 const isBetCostAvailable = () => betCost() > 0 && betCost() <= stateBet.balanceAmount;
 const hasAutoBetCounter = () => stateBet.autoSpinsCounter !== 0;
